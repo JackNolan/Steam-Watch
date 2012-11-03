@@ -4,7 +4,7 @@ class CreateGames < ActiveRecord::Migration
       t.decimal :price
       t.integer :metascore
       t.string :name
-      t.data :release_date
+      t.date :release_date
 
       t.timestamps
     end
