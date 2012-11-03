@@ -1,0 +1,5 @@
+<ul>
+<% @games.each do |game| %>
+  <li><%= link_to "#{game.name}", "games/#{game.id}" %></li>
+  <% end %>
+</ul>
