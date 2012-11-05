@@ -1,33 +1,7 @@
 require 'open-uri'
 desc "Scrape the steam search page to generate games"
 task :scrape_steam => [:environment] do
-  # class GameListing
 
-  #   @@all = []
-  #   @@columns = %w{ price
-  #                   type
-  #                   metascore
-  #                   released
-  #                   capsule
-  #                   name
-  #                 }
-
-  #   @@columns.each do |a|
-  #     attr_accessor a.to_sym
-  #   end
-
-  #   def self.all
-  #     @@all
-  #   end
-
-  #   def initialize(*args)
-  #     @@columns.each_with_index do |a,i|
-  #       send("#{a}=", args[i])
-  #     end
-  #     @@all << self
-  #   end
-
-  # end
   def page_doc(url, page_elements) 
     Nokogiri::HTML(open(url))/page_elements
   end
@@ -48,8 +22,8 @@ task :scrape_steam => [:environment] do
   base_url = "http://store.steampowered.com/search#sort_by=&sort_order=ASC&page="
   Nokogiri::HTML(open(base_url))
 # get last search page number
-  index_body_text = page_doc("#{base_url}1",".search_pagination_right").inner_text
-  last_search_page_number = index_body_text.match(/\d{3}/).to_s
+  index_body = page_doc("#{base_url}1",".search_pagination_right")
+  puts index_body/":last_child"
   puts last_search_page_number
 # scrape each search page
   for i in 1..1 #last_search_page_number.to_i => this part commented out to prevent excessive test scraping
