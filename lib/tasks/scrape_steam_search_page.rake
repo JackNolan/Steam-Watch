@@ -19,14 +19,14 @@ task :scrape_steam => [:environment] do
       Game.create(price: price, metascore: metascore, release_date: released, name: name)
     end
   end
-  base_url = "http://store.steampowered.com/search#sort_by=&sort_order=ASC&page="
-  Nokogiri::HTML(open(base_url))
+  base_url = "http://store.steampowered.com/search/results?sort_order=ASC&snr=1_7_7_230_7&page="
 # get last search page number
-  index_body = page_doc("#{base_url}1",".search_pagination_right")
-  puts index_body/":last_child"
-  puts last_search_page_number
+  index_body_text = page_doc("#{base_url}1",".search_pagination_right").inner_text
+  last_search_page_number = index_body_text.match(/\d{3}/).to_s
 # scrape each search page
-  for i in 1..1 #last_search_page_number.to_i => this part commented out to prevent excessive test scraping
+
+  for i in 1..last_search_page_number.to_i
+    puts i
     current_page = page_doc("#{base_url + i.to_s}","body")
     scrape_page(current_page)
   end
