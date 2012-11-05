@@ -11,15 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121102195339) do
+ActiveRecord::Schema.define(:version => 20121105232419) do
 
   create_table "games", :force => true do |t|
-    t.decimal  "price"
     t.integer  "metascore"
     t.string   "name"
     t.date     "release_date"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+  end
+
+  create_table "price_histroys", :force => true do |t|
+    t.integer  "game_id"
+    t.decimal  "price"
+    t.date     "start_date"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end

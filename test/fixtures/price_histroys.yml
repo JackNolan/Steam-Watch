@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  game_id: 1
+  price: 9.99
+  start_date: 2012-11-05
+
+two:
+  game_id: 1
+  price: 9.99
+  start_date: 2012-11-05
