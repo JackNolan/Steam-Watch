@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121105232419) do
+ActiveRecord::Schema.define(:version => 20121105233515) do
 
   create_table "games", :force => true do |t|
     t.integer  "metascore"
@@ -21,9 +21,9 @@ ActiveRecord::Schema.define(:version => 20121105232419) do
     t.datetime "updated_at",   :null => false
   end
 
-  create_table "price_histroys", :force => true do |t|
+  create_table "prices", :force => true do |t|
     t.integer  "game_id"
-    t.decimal  "price"
+    t.decimal  "ammount"
     t.date     "start_date"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

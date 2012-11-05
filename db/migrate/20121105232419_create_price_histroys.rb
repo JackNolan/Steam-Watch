@@ -1,12 +1,10 @@
 class CreatePriceHistroys < ActiveRecord::Migration
   def change
-    create_table :price_histroys do |t|
+    create_table :prices do |t|
       t.integer :game_id
-      t.decimal :price
+      t.decimal :ammount
       t.date :start_date
-
       t.timestamps
     end
-    remove_column :games, :price
   end
 end
