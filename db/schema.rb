@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121105233515) do
+ActiveRecord::Schema.define(:version => 20121106143030) do
+
+  create_table "additional_contents", :force => true do |t|
+    t.string   "name"
+    t.date     "release_date"
+    t.integer  "metascore"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "games", :force => true do |t|
     t.integer  "metascore"
@@ -22,11 +30,12 @@ ActiveRecord::Schema.define(:version => 20121105233515) do
   end
 
   create_table "prices", :force => true do |t|
-    t.integer  "game_id"
     t.decimal  "ammount"
     t.date     "start_date"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "buyable_id"
+    t.string   "buyable_type"
   end
 
 end

@@ -2,8 +2,7 @@ SteamWatch::Application.routes.draw do
   get "/games" => "games#index"
   get "/games/:id" => "games#show", :as => "game"
   # The priority is based upon order of creation:
-  # first created -> highest priority.
-
+  # first created -> highest priority
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
@@ -53,7 +52,7 @@ SteamWatch::Application.routes.draw do
   # root :to => 'welcome#index'
 
   # See how all your routes lay out with "rake routes"
-
+  root :to => "games#index"
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
