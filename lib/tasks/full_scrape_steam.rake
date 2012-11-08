@@ -9,12 +9,13 @@ task :scrape_steam => [:environment] do
   def scrape_page(current_page)
 
     (current_page/".search_result_row").each do |game|
-      price = (game/".col.search_price").text.split('$').last
-      metascore = (game/".col.search_metascore").text
-      released = (game/".col.search_released").text
-      name = (game/".col.search_name > h4").text
-      # type = (game/".col.search_type > img").map { |image| image['src'] }.first
-      # capsule = (game/".col.search_capsule > img").map { |image| image['src'] }.first
+      price = (game/".search_price").children.last.text.gsub(/[^0-9\.]/, '').to_f
+      metascore = (game/".search_metascore").text
+      released = (game/".search_released").text
+      name = (game/".search_name > h4").text
+      type = (game/".search_type img").attr("src").to_s
+
+      # capsule = (game/".search_capsule > img").map { |image| image['src'] }.first
       puts name
       Game.create(price: price, metascore: metascore, release_date: released, name: name)
     end
@@ -29,6 +30,7 @@ task :scrape_steam => [:environment] do
     puts i
     current_page = page_doc("#{base_url + i.to_s}","body")
     scrape_page(current_page)
+    break
   end
 
 end
