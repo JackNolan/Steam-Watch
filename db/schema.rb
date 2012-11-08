@@ -11,12 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121106143030) do
+ActiveRecord::Schema.define(:version => 20121108202528) do
 
-  create_table "additional_contents", :force => true do |t|
+  create_table "extra", :force => true do |t|
     t.string   "name"
     t.date     "release_date"
     t.integer  "metascore"
+    t.integer  "game_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end

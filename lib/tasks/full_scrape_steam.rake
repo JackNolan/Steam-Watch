@@ -16,8 +16,16 @@ task :scrape_steam => [:environment] do
       type = (game/".search_type img").attr("src").to_s
 
       # capsule = (game/".search_capsule > img").map { |image| image['src'] }.first
-      puts name
-      Game.create(price: price, metascore: metascore, release_date: released, name: name)
+      price_obj = Price.new(:ammount => price)
+      # content = type.include? "game" : Game.new ? AdditionalContent.new
+      content.price = price_obj
+      content.release_date = released
+      content.name = name
+      # create price object
+      # 
+      
+      
+      Game.create(metascore: metascore, release_date: released, name: name)
     end
   end
   base_url = "http://store.steampowered.com/search/results?sort_order=ASC&snr=1_7_7_230_7&page="
