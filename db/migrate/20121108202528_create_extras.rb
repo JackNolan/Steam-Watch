@@ -1,6 +1,6 @@
 class CreateExtras < ActiveRecord::Migration
   def change
-    create_table :extra do |t|
+    create_table :extras do |t|
       t.string :name
       t.date :release_date
       t.integer :metascore

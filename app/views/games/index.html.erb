@@ -1,11 +1,6 @@
-<ul class="nav">
-  <li><a href="">test</a></li>
-  <li><a href="">test</a></li>
-  <li><a href="">test</a></li>
-  <li><a href="">test</a></li>
-  <li><a href="">test</a></li>
-  <li><a href="">test</a></li>
+<ul>
 <% @games.each do |game| %>
-  <li><%= link_to "#{game.name}", game_path(game) %></li>
+  <li><%= link_to "#{game.name}", game_path(game) %> price: <%= game.current_price.ammount.to_s %> 
+    <%= "x" if game.is_lowest? %></li>
   <% end %>
 </ul>

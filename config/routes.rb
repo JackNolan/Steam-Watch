@@ -1,6 +1,7 @@
 SteamWatch::Application.routes.draw do
-  get "/games" => "games#index"
-  get "/games/:id" => "games#show", :as => "game"
+  resources :games do
+    resources :extras, :controller => "games/extras"
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority
   # Sample of regular route:
