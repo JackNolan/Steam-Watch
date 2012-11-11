@@ -1,0 +1,5 @@
+<ul>
+<% @extras.each do |extra| %>
+  <li><%= link_to extra.name, game_extra_path(extra.game_id,extra.id) %></li>
+  <% end %>
+</ul>

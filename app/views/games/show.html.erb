@@ -1,5 +1,13 @@
 <h3><%= @game.name %></h3>
 <ul>
-  <li><%= @game.price.to_s %></li>
-  <li><%= @game.release_date %></li>
+  <li>released on <%=@game.release_date %></li>
+  <li>price history:</li>
+  <ul>
+    <%= raw show_price_history(@game.prices) %>
+  </ul>
+</ul>
+<ul>
+<% @game.extras.each do |extra| %>
+  <li><%= link_to extra.name, game_extra_path(extra.game_id,extra.id) %></li>
+  <% end %>
 </ul>

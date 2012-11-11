@@ -1,5 +1,8 @@
 class Extra < ActiveRecord::Base
-  attr_accessible :metascore, :name, :release_date
+  include PriceAwareness
+  attr_accessible :metascore, :name, :release_date, :extra_type
   has_many :prices, :as => :buyable
   belongs_to :game
+
+
 end
