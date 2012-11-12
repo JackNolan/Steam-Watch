@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20121108202528) do
-=======
-ActiveRecord::Schema.define(:version => 20121111173649) do
->>>>>>> updateScrapeToUseSubMods
+ActiveRecord::Schema.define(:version => 20121111235702) do
 
   create_table "extras", :force => true do |t|
     t.string   "name"
@@ -25,15 +21,7 @@ ActiveRecord::Schema.define(:version => 20121111173649) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.string   "extra_type"
-  end
-
-  create_table "extra", :force => true do |t|
-    t.string   "name"
-    t.date     "release_date"
-    t.integer  "metascore"
-    t.integer  "game_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.string   "url"
   end
 
   create_table "games", :force => true do |t|
@@ -42,6 +30,8 @@ ActiveRecord::Schema.define(:version => 20121111173649) do
     t.date     "release_date"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.integer  "steam_id"
+    t.string   "url"
   end
 
   create_table "prices", :force => true do |t|
