@@ -8,4 +8,10 @@ module PriceAwareness
   def lowest_price
     prices.order("ammount ASC").limit(1).first
   end
+  def add_price(price)
+  prices.build(:ammount => price, :start_date => Time.now) if new_price?
+  end
+  def new_price?
+     !current_price || current_price.ammount == price 
+  end
 end
