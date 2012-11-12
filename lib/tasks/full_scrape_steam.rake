@@ -10,32 +10,23 @@ task :scrape_steam => [:environment] do
 
     (current_page/".search_result_row").each do |row|
       #scrape
-      game_information = parse_page(row)
-      type = game_information[:extra][:type]
-      price = game_information[:price][:ammount]
-      steam_id = game_information[:game][:steam_id]
+      options = parse_page(row)
+      type = options[:extra][:extra_type]
+      price = options[:price][:ammount]
+      steam_id = options[:game][:steam_id]
 
       game = Game.find_by_steam_id(steam_id)
       if type == "app"
-      game = build_buyable(Game.new,game_information) unless game
-      game.add_new_price(price)
-      elsif game 
-      extra = Extra.find_by_game_id(game.id)
-      build_buyable(game.extras,game_information) unless extra
-      extra.add_new_price(price)
-      end
+      game = Game.new(options[:buyable].merge(options[:game])) unless game
+      game.add_price(price)
+      elsif game
+      extra = Extra.find_by_game_id(game.id) || game.extras.build(options[:buyable].merge(options[:extra]))
+      extra.add_price(price)
+      end      
       game.save if game
     end
   end
 
-
-def build_buyable(buyable,options)
-  attrabutes = options[:buyable]
-  attrabutes.merge(options[:game]) if buyable.is_a? Game
-  attrabutes.merge(options[:extra]) if buyable.is_a? Extra
-  buyable.build(options[:buyable])
-  buyable
-end
 def parse_page(page)
   price = (page/".search_price").children.last.to_s
   metascore = (page/".search_metascore").inner_text
@@ -58,7 +49,7 @@ def parse_page(page)
   price: {ammount: price, 
     start_date: Time.now},
   game:{steam_id: steam_id.to_i},
-  extra:{type: type}}
+  extra:{extra_type: type}}
 end
   base_url = "http://store.steampowered.com/search/results?sort_order=ASC&snr=1_7_7_230_7&page="
 # get last search page number
