@@ -1,9 +1,20 @@
 require 'open-uri'
 desc "Scrape the steam search page to generate games"
 task :scrape_steam => [:environment] do
+$i = 0
+  def page_doc(url, page_elements)
+    try_again(0,3){Nokogiri::HTML(open(url))/page_elements}
+  end
 
-  def page_doc(url, page_elements) 
-    Nokogiri::HTML(open(url))/page_elements
+  def try_again(i,n)
+    begin
+      yield
+    rescue Exception => e
+      puts "#{e} attempt number #{i}"
+      sleep(25)
+      i += 1
+      try_again(i,n) unless i == n
+    end
   end
 
   def scrape_page(current_page)
@@ -22,8 +33,15 @@ task :scrape_steam => [:environment] do
       elsif game
       extra = Extra.find_by_game_id(game.id) || game.extras.build(options[:buyable].merge(options[:extra]))
       extra.add_price(price)
-      end      
-      game.save if game
+      end
+
+
+      if game
+      game.save 
+        else
+      debugger
+      puts "warning #{options[:buyable][:name]} didnt save"
+      end
     end
   end
 
@@ -52,16 +70,15 @@ def parse_page(page)
   extra:{extra_type: type}}
 end
   base_url = "http://store.steampowered.com/search/results?sort_order=ASC&snr=1_7_7_230_7&page="
-# get last search page number
   index_body_text = page_doc("#{base_url}1",".search_pagination_right").inner_text
   last_search_page_number = index_body_text.match(/\d{3}/).to_s
-# scrape each search page
+  puts last_search_page_number
 
-  for i in 1..last_search_page_number.to_i
-    puts i
+  for i in 3..last_search_page_number.to_i
+    puts base_url + i.to_s
     current_page = page_doc("#{base_url + i.to_s}","body")
     scrape_page(current_page)
-    break if i == 3
+    break
   end
 
 end
