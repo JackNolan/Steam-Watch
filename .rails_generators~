@@ -109,6 +109,19 @@ rspec:view:
 - --skip-namespace
 - --old-style-hash
 - --template-engine=
+kaminari:config:
+- --force
+- --pretend
+- --quiet
+- --skip
+kaminari:views:
+- --force
+- --pretend
+- --quiet
+- --skip
+- --skip-namespace
+- --old-style-hash
+- --template-engine=
 jquery:install:
 - --force
 - --pretend
