@@ -1,6 +1,12 @@
-<ul>
-<% @games.each do |game| %>
-  <li><%= link_to "#{game.name}", game_path(game) %> price: <%= game.current_price.ammount.to_s %> 
-    <%= "x" if game.is_lowest? %></li>
-  <% end %>
-</ul>
+<table id="games" class="display" data-source="<%= games_url(format: "json") %>">
+  <thead>
+  <tr>
+    <th>Game Name</th>
+    <th>Price</th>
+    <th>release date</th>
+    <th>Steam link</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
