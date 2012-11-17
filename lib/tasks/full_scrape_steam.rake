@@ -37,6 +37,7 @@ task :scrape_steam => [:environment] do
       extra.game = extra.find_game_belongs_to
       extra.add_price(price)
       extra.save if extra.game
+      end
     end
   end
 
@@ -51,7 +52,7 @@ def parse_page(page)
   #break things down
   steam_id = url.match(/com\/[^0-9]+\/([0-9]+)\//).captures.first
   type = "demo" if price.match(/Demo/i)
-  price = price.gsub(/[^0-9\.]/, '').to_f
+  price = price.gsub(/[^0-9]/, '').to_i
   #save things
   {buyable: 
     {name: name,

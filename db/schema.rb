@@ -11,31 +11,33 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121111235702) do
+ActiveRecord::Schema.define(:version => 20121116235142) do
 
   create_table "extras", :force => true do |t|
     t.string   "name"
     t.date     "release_date"
     t.integer  "metascore"
     t.integer  "game_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.string   "extra_type"
     t.string   "url"
+    t.integer  "current_price"
   end
 
   create_table "games", :force => true do |t|
     t.integer  "metascore"
     t.string   "name"
     t.date     "release_date"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.integer  "steam_id"
     t.string   "url"
+    t.integer  "current_price"
   end
 
   create_table "prices", :force => true do |t|
-    t.decimal  "ammount"
+    t.integer  "ammount"
     t.datetime "start_date"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false

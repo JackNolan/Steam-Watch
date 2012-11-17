@@ -1,3 +1,38 @@
 // Place all the styles related to the games controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+div.dataTables_scrollHead {
+  height: 38px;
+  th {
+    border-bottom: line;
+  }
+}
+.dataTables_paginate {
+  float:right;
+  padding: 10px 0 0 0;
+  a {
+     padding: 0 5px 0px 5px;
+  }
+}
+.dataTables_wrapper {
+  height: 48px;
+}
+.dataTables_filter {
+  display:inline;
+  label {
+    display: inline;
+  } 
+}
+div.clear{
+  clear:both;
+}
+div.left-col,div.right-col {
+  margin-left: 0px;
+}
+div.left-col{
+  margin-top: 48px;
+  margin-left: 30px;
+}
+div.preparing {
+  padding: 0% 50%;
+}

@@ -1,5 +1,5 @@
 class GamesDatatable
-   delegate :params, :h, :link_to, :number_to_currency, to: :@view
+   delegate :params, :h, :link_to, :number_to_currency,:truncate, to: :@view
 
   def initialize(view)
     @view = view
@@ -19,10 +19,9 @@ private
   def data
     games.map do |game|
       [
-        link_to(game.name, game),
-        number_to_currency(game.current_price.ammount),
-        h(game.release_date),
-        link_to("Link",game.url)
+        link_to(truncate(game.name.strip, length:40), game),
+        number_to_currency(game.price),
+        h(game.metascore ? game.metascore : "Not rated")
       ]
     end
   end
@@ -49,7 +48,7 @@ private
   end
 
   def sort_column
-    columns = %w[name metascore release_date]
+    columns = %w[name current_price metascore]
     columns[params[:iSortCol_0].to_i]
   end
 
