@@ -8,6 +8,10 @@ class GamesController < ApplicationController
   end
   def show
     @game = Game.find params[:id]
+    respond_to do |format| 
+      format.html
+      format.json {render json: [@game.to_json,@game.prices.to_json,@game.extras]}
+    end
   end
 
 end

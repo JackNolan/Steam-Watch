@@ -17,13 +17,37 @@ $(function(){
     bProcessing: true,
     bServerSide: true,
     sScrollY: "600px",
-    sAjaxSource: $('#games').data('source'),
+    sAja2xSource: $('#games').data('source'),
     "sDom": "fp<'span6 preparing'r>"
   });
-   $('#games tbody').delegate("tr", "click", rowClick);
+   // $('#games tbody').delegate("tr", "click", rowClick);
 })
+// function createInfo(info) {
+//   info = JSON.parse(info)
+//   console.log(info)
+//  $('.info h3.title span').replaceWith("<span>" + info.name + "</span>");
+//  $('.info li.released span').replaceWith("<span>" + info.release_date + "</span>");
+//   // $('.info').replaceWith('<h1 class='title'>' + info.name + '</h1>');
+//   // $('.info').replaceWith('<h1 class='title'>' + info.name + '</h1>');
+//   // $('.info').replaceWith('<h1 class='title'>' + info.name + '</h1>');
 
-function rowClick(){
- //expand and populated oth parts with cool shit
- alert();
-}
+// }
+// function createPriceHistory () {
+
+
+// }
+// function createExtras () {
+
+
+// }
+// function rowClick(){
+//  //expand and populated oth parts with cool shit
+
+//  $(".selected").removeClass("selected")
+//  $(this).addClass('selected');
+//  $.getJSON($(this).find('td a').attr('href') + ".json",function(data){
+//   createInfo(data[0]);
+//   // $('.priceHistory').append('<p>' + data[1] + '</p>');
+//   // $('.extras').append('<p>' + data[2] + '</p>');
+//  });
+// }
