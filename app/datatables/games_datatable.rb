@@ -19,7 +19,7 @@ private
   def data
     games.map do |game|
       [
-        link_to(truncate(game.name.strip, length:40), game),
+        link_to(truncate(game.name.strip, length:30), game),
         number_to_currency(game.price),
         h(game.metascore ? game.metascore : "Not rated")
       ]
